@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../redux/authSlice';
-
+import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
   const [formData, setFormData] = useState({
     email: '',
@@ -9,6 +9,7 @@ export default function SignInForm() {
   });
 
   const dispatch = useDispatch();
+    const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
@@ -18,9 +19,14 @@ export default function SignInForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signIn(formData));
-  };
-
+    dispatch(signIn(formData)).then((action) => {
+      if (action.type === 'auth/signIn/fulfilled') {
+        navigate('/dashboard');
+      } else {
+        console.error('Sign-in failed:', action.payload);
+      }
+    })
+};
   return (
     <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Sign In</h2>

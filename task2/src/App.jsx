@@ -1,24 +1,61 @@
-import { useState } from 'react'
-import SignupForm from './components/SignupForm'
-import PostCard from './components/PostCard'
-import SignInForm from './components/signinForm'
-import Login from './pages/login'
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './pages/login';
+import Dashboard from './pages/Dashboard';
+import Navbar from './components/Navbar';
+import Posts from './pages/Posts';
+import NewPost from './pages/NewPost';
 
 function App() {
-  
-
   return (
-    <>
-      {/* <div className="text-3xl font-bold underline">hello world</div> */}
-      {/* <SignupForm/> */}
-      {/* <PostCard title="hello" body={"noran"} userId={1}/>
-      <PostCard title="hi" body={"noranee"} userId={2}/>
-      <PostCard title="helo" body={"noranww"} userId={3}/> */}
-       {/* <SignInForm/> */}
-       <Login/>
-    </>
-  )
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/posts"
+          element={
+            <PrivateRoute>
+              <Posts />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/posts/newpost"
+          element={
+            <PrivateRoute>
+              <NewPost/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/posts/:id/edit"
+          element={
+            <PrivateRoute>
+              <h1>Edit Post</h1>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/posts/create"
+          element={
+            <PrivateRoute>
+              <NewPost />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

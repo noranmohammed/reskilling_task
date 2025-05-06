@@ -1,7 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost } from '../redux/postSlice';
 
 export default function NewPost() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth); // Get the logged-in user from the Redux state
+  const [formData, setFormData] = useState({
+    title: '',
+    body: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!user || !user.id) {
+      console.error('User is not logged in');
+      return;
+    }
+    const newPost = {
+      ...formData,
+      userId: user.id, // Attach the logged-in user's ID
+    };
+    dispatch(createPost(newPost));
+    setFormData({ title: '', body: '' }); // Reset the form
+  };
+
   return (
-    <div>NewPost</div>
-  )
+    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+      <h1 className="text-2xl font-bold text-gray-800 mb-4">Create New Post</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-gray-700 font-medium mb-2">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-lg p-2"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="body" className="block text-gray-700 font-medium mb-2">
+            Body
+          </label>
+          <textarea
+            id="body"
+            name="body"
+            value={formData.body}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-lg p-2"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600"
+        >
+          Create Post
+        </button>
+      </form>
+    </div>
+  );
 }

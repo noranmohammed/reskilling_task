@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../redux/authSlice';
-
+import { useNavigate } from 'react-router-dom';
 export default function SignupForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,6 +13,7 @@ export default function SignupForm() {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
@@ -22,7 +23,15 @@ export default function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signUp(formData));
+    dispatch(signUp(formData)).then((action)=>{
+        if (action.type === 'auth/signUp/fulfilled') {
+          navigate('/dashboard');
+        }
+        else {
+          console.error('Sign-up failed:', action.payload);
+        }
+    })
+    
   };
 
   return (

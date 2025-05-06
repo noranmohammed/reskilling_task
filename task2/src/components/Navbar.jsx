@@ -6,12 +6,17 @@ export default function Navbar() {
     <nav className="bg-blue-500 p-4">
       <ul className="flex justify-center space-x-4">
         <li>
-          <Link to="/" className="text-white font-medium hover:underline">
+          <Link to="/posts" className="text-white font-medium hover:underline">
             Posts
           </Link>
         </li>
         <li>
-          <Link to="/login" className="text-white font-medium hover:underline">
+          <Link to="/posts/newpost" className="text-white font-medium hover:underline">
+            create post
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className="text-white font-medium hover:underline">
             Login
           </Link>
         </li>
