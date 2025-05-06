@@ -1,0 +1,26 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export default function Navbar() {
+  return (
+    <nav className="bg-blue-500 p-4">
+      <ul className="flex justify-center space-x-4">
+        <li>
+          <Link to="/" className="text-white font-medium hover:underline">
+            Posts
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" className="text-white font-medium hover:underline">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link to="/dashboard" className="text-white font-medium hover:underline">
+            Dashboard
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
