@@ -10,8 +10,7 @@ import NewPost from "./pages/NewPost";
 function App() {
   return (
     <div className="bg-purple-100 min-h-screen">
-      {" "}
-      {/* Set background color and full height */}
+      
       <Router>
         <Navbar />
         <Routes>

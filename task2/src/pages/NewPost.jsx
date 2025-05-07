@@ -4,7 +4,7 @@ import { createPost } from '../redux/postSlice';
 
 export default function NewPost() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth); // Get the logged-in user from the Redux state
+  const { user } = useSelector((state) => state.auth); 
   const [formData, setFormData] = useState({
     title: '',
     body: '',
@@ -23,15 +23,15 @@ export default function NewPost() {
     }
     const newPost = {
       ...formData,
-      userId: user?.id, // Attach the logged-in user's ID
+      userId: user?.id, 
     };
     console.log(newPost)
-    console.log('Submitting new post:', newPost); // Debug log
+    console.log('Submitting new post:', newPost); 
     dispatch(createPost(newPost))
       .unwrap()
       .then(() => {
         console.log('Post created successfully');
-        setFormData({ title: '', body: '' }); // Reset the form
+        setFormData({ title: '', body: '' }); 
       })
       .catch((error) => {
         console.error('Error creating post:', error);

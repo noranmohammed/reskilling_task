@@ -10,7 +10,7 @@ export default function Posts() {
   useEffect(() => {
     if (currentPage) {
       console.log('Fetching posts for page:', currentPage);
-      dispatch(fetchPosts({ page: currentPage })); // Fetch posts for the current page
+      dispatch(fetchPosts({ page: currentPage })); 
     }
   }, [dispatch, currentPage]);
 

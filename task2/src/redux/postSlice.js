@@ -14,16 +14,15 @@ export const fetchPosts = createAsyncThunk(
   );
 
   export const createPost = createAsyncThunk('posts/createPost', async (postData, { rejectWithValue }) => {
-    try {
-      console.log('Sending post data to API:', postData); // Debug log
+    try { 
       const response = await axios.post('http://localhost:8080/posts', postData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      return response.data.post; // Assuming the API returns { post: {...} }
+      return response.data.post; 
     } catch (error) {
-      console.error('Error from API:', error.response?.data?.message || error.message); // Debug log
+      
       return rejectWithValue(error.response?.data?.message || 'Failed to create post');
     }
   });
@@ -125,7 +124,7 @@ const postSlice = createSlice({
         state.loading = false;
         const index = state.posts.findIndex((post) => post.id === action.payload.id);
         if (index !== -1) {
-          state.posts[index] = action.payload; // Update the post in the state
+          state.posts[index] = action.payload; 
         }
       })
       .addCase(editPost.rejected, (state, action) => {

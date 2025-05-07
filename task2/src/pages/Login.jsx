@@ -3,10 +3,10 @@ import SignInForm from '../components/signinForm';
 import SignupForm from '../components/SignupForm';
 
 export default function Login() {
-  const [isSignUp, setIsSignUp] = useState(false); // State to toggle between forms
+  const [isSignUp, setIsSignUp] = useState(false); 
 
   const toggleForm = () => {
-    setIsSignUp((prev) => !prev); // Toggle the form
+    setIsSignUp((prev) => !prev); 
   };
 
   return (
