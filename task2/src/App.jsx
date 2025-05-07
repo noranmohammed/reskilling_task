@@ -1,60 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
-import Login from './pages/login';
-import Dashboard from './pages/Dashboard';
-import Navbar from './components/Navbar';
-import Posts from './pages/Posts';
-import NewPost from './pages/NewPost';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import Login from "./pages/login";
+import Dashboard from "./pages/Dashboard";
+import Navbar from "./components/Navbar";
+import Posts from "./pages/Posts";
+import NewPost from "./pages/NewPost";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/posts"
-          element={
-            <PrivateRoute>
-              <Posts />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/posts/newpost"
-          element={
-            <PrivateRoute>
-              <NewPost/>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/posts/:id/edit"
-          element={
-            <PrivateRoute>
-              <h1>Edit Post</h1>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/posts/create"
-          element={
-            <PrivateRoute>
-              <NewPost />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </Router>
+    <div className="bg-purple-100 min-h-screen">
+      {" "}
+      {/* Set background color and full height */}
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="dashboard" element={<PrivateRoute />}>
+            <Route path="" element={<Dashboard />} />
+            <Route path="newpost" element={<NewPost />} />
+          </Route>
+          <Route path="posts" element={<Posts />}></Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

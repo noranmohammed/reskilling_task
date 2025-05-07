@@ -52,17 +52,17 @@ router.post('/', async (req, res, next) => {
 
   let errors = {};
 
-  if (!isValidText(data.title)) {
-    errors.title = 'Invalid title.';
-  }
+  // if (!isValidText(data.title)) {
+  //   errors.title = 'Invalid title.';
+  // }
 
-  if (!isValidText(data.description)) {
-    errors.description = 'Invalid description.';
-  }
+  // if (!isValidText(data.description)) {
+  //   errors.description = 'Invalid description.';
+  // }
 
-  if (!isValidDate(data.date)) {
-    errors.date = 'Invalid date.';
-  }
+  // if (!isValidDate(data.date)) {
+  //   errors.date = 'Invalid date.';
+  // }
 
 //   if (!isValidImageUrl(data.image)) {
 //     errors.image = 'Invalid image.';
@@ -76,8 +76,8 @@ router.post('/', async (req, res, next) => {
   }
 
   try {
-    await add(data);
-    res.status(201).json({ message: 'post saved.', post: data });
+    const newPost = await add(data);
+    res.status(201).json({ message: 'post saved.', post: newPost });
   } catch (error) {
     next(error);
   }

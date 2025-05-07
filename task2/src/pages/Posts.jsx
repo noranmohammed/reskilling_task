@@ -16,32 +16,23 @@ export default function Posts() {
 
   const handlePageChange = (page) => {
     console.log('Changing to page:', page);
-    dispatch(setCurrentPage(page)); // Update the current page
-  };
-  const handleEdit = (postId) => {
-    console.log('Edit post:', postId);
-    // Navigate to the edit page or open an edit modal
+    dispatch(setCurrentPage(page)); 
   };
   
-  const handleDelete = (postId) => {
-    console.log('Delete post:', postId);
-    // Dispatch a Redux action or call an API to delete the post
-  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container bg-purple-100 mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Posts</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
         {posts.map((post) => (
           <PostCard
             key={post.id}
             title={post.title}
             body={post.body}
             userId={post.userId}
-            onEdit={() => handleEdit(post.id)}
-            onDelete={() => handleDelete(post.id)}
+            
           />
         ))}
       </div>

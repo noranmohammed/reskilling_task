@@ -10,9 +10,9 @@ export default function Login() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container  mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6">Authentication</h1>
-      <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+      <div className="max-w-md mx-auto bg-amber-50 shadow-md rounded-lg p-6">
         {isSignUp ? <SignupForm /> : <SignInForm />}
         <button
           onClick={toggleForm}

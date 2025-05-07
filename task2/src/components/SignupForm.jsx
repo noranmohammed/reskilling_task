@@ -35,7 +35,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <div className="max-w-md mx-auto bg-amber-50 shadow-md rounded-lg p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Sign Up</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -122,7 +122,7 @@ export default function SignupForm() {
             </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600"
+          className="w-full bg-purple-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-purple-600"
           disabled={loading}
         >
           {loading ? 'Signing Up...' : 'Sign Up'}

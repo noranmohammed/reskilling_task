@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav className="bg-blue-500 p-4">
+    <nav className="bg-purple-800 p-4">
       <ul className="flex justify-center space-x-4">
         <li>
           <Link to="/posts" className="text-white font-medium hover:underline">
@@ -11,7 +11,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/posts/newpost" className="text-white font-medium hover:underline">
+          <Link to="/dashboard/newpost" className="text-white font-medium hover:underline">
             create post
           </Link>
         </li>

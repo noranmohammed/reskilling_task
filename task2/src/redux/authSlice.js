@@ -22,7 +22,7 @@ export const signIn = createAsyncThunk('auth/signIn', async (formData, { rejectW
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
     token: null,
     isAuthenticated: false,
     loading: false,
@@ -33,6 +33,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
+      localStorage.removeItem('token'); // Remove token from local storage
     },
   },
   extraReducers: (builder) => {
@@ -62,6 +63,8 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         localStorage.setItem('token', action.payload.token);
+        localStorage.setItem('user', JSON.stringify(action.payload.user));
+
         state.isAuthenticated = true;
       })
       .addCase(signIn.rejected, (state, action) => {

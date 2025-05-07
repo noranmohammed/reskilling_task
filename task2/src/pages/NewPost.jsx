@@ -23,14 +23,23 @@ export default function NewPost() {
     }
     const newPost = {
       ...formData,
-      userId: user.id, // Attach the logged-in user's ID
+      userId: user?.id, // Attach the logged-in user's ID
     };
-    dispatch(createPost(newPost));
-    setFormData({ title: '', body: '' }); // Reset the form
+    console.log(newPost)
+    console.log('Submitting new post:', newPost); // Debug log
+    dispatch(createPost(newPost))
+      .unwrap()
+      .then(() => {
+        console.log('Post created successfully');
+        setFormData({ title: '', body: '' }); // Reset the form
+      })
+      .catch((error) => {
+        console.error('Error creating post:', error);
+      });
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+    <div className="max-w-md mx-auto bg-amber-50 shadow-md rounded-lg p-6">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Create New Post</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -63,7 +72,7 @@ export default function NewPost() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600"
+          className="w-full bg-purple-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-purple-600"
         >
           Create Post
         </button>

@@ -46,14 +46,14 @@ async function getByUserId(userId) {
     return userPosts;
   }
 
-async function add(data, loggedInUserId) {
+async function add(data) {
     const storedData = await readPostsData();
     const postId = storedData.length > 0
       ? Math.max(...storedData.map(post => post.id)) + 1
       : 1;
-    storedData.unshift({ ...data, id: postId, userId: loggedInUserId });
+    storedData.unshift({ ...data, id: postId});
     await writePostData(storedData);
-    return { id: postId, userId: loggedInUserId, ...data };
+    return { id: postId, ...data };
   }
 
   async function replace(id, data, loggedInUserId) {
