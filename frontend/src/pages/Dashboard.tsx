@@ -35,7 +35,7 @@ export default function Dashboard() {
        
       <h2 className="text-xl font-bold text-gray-800 mb-4">Your Posts</h2>
       {loading && <p>Loading posts...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
+      {/* {error && <p className="text-red-500">Error: {error}</p>} */}
       {!loading && userPosts.length === 0 && (
         <p className="text-gray-700">You have not created any posts yet.</p>
       )}
